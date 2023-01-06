@@ -30,13 +30,23 @@ class _MyHomeState extends State<MyHome> {
     showAboutDialog(context: context);
   }
 
+  void SaveHabbit() {
+    setState(() {
+      habbitList.add([NewHabbitController.text, false]);
+    });
+
+    NewHabbitController.clear();
+    Navigator.of(context).pop();
+  }
+
+  final NewHabbitController = TextEditingController();
   void CreateHabit() {
     showDialog(
         context: context,
         builder: ((context) {
-          return const EnterHabitBox(
-          
-     
+          return EnterHabitBox(
+            contrroller: NewHabbitController,
+            onsave: SaveHabbit,
           );
         }));
   }
